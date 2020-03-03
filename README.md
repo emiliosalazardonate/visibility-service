@@ -14,3 +14,7 @@ To run the server:
 
 
 Starting development server at http://127.0.0.1:8000/
+
+http://localhost:8000/visibility?s_ra=166&s_dec=-19&t_min=58910.43263888889&t_max=59094.39097222222
+
+The part which is telescope-related is in the views.py file:
