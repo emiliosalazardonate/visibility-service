@@ -20,6 +20,6 @@ from visibility import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello', views.hello)
+    path('visibility', views.visibility)
 
 ]

@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'visibility-service.urls'
+ROOT_URLCONF = 'visibility.urls'
 
 TEMPLATES = [
     {

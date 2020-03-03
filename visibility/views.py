@@ -3,7 +3,7 @@ import datetime
 from astropy.io.votable.tree import VOTableFile, Resource, Table, Field, Info
 from django.http import HttpResponse
 
-def hello(request):
+def visibility(request):
     now = datetime.datetime.now()
     html = "<html><body>It is now %s.</body></html>" % now
 
