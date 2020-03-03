@@ -1,5 +1,6 @@
 import datetime
 
+import os
 from astropy.io.votable.tree import VOTableFile, Resource, Table, Field, Info
 from django.http import HttpResponse
 
@@ -40,27 +41,28 @@ def visibility(request):
               utype="Char.TimeAxis.Coverage.Bounds.Limits.StartTime"),
         Field(votable, name="t_stop", datatype="double", ucd="time.start",
               utype="Char.TimeAxis.Coverage.Bounds.Limits.StartTime"),
-        Field(votable, name="t_stop", datatype="double", ucd="time.start",
+        Field(votable, name="t_visibility", datatype="double", ucd="time.start",
               utype="Char.TimeAxis.Coverage.Bounds.Limits.StartTime"),
 
     ])
-    # Now, use those field definitions to create the numpy record arrays, with
-    # the given number of rows
+    #These are mock data. This is telescope-related. The values are [t_start (in MJD), t_stop (in MJD), t_visibility (in seconds) ]
     results = [[58986.01767361111, 58987.993101851855, 170677],
                [58988.01767361111, 58989.993101851855, 170637],
                [58990.01767361111, 58997.993101851855, 170647],
                [58992.01767361111, 59997.993101851855, 170647]]
+
     number_of_intervals = len(results)
     table.create_arrays(number_of_intervals)
     for i in range(0, number_of_intervals):
         table.array[i] = (results[i][0], results[i][1], results[i][2])
 
 
-    # Now write the whole thing to a file.
+    # Now write the whole thing to a file to be streamed
     # Note, we have to use the top-level votable file object
 
     xml_now = "/tmp/new_votable_%s.xml" % now
     votable.to_xml(xml_now)
-    return HttpResponse(open(xml_now).read(), content_type='text/xml')
+    stream = open(xml_now).read()
+    os.remove(xml_now)
+    return HttpResponse(stream, content_type='text/xml')
 
-    # return HttpResponse(html)
