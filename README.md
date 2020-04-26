@@ -8,6 +8,9 @@ The REST service needs python 3.6 and uses two libraries django and astropy:
 Django==3.0.3
 astropy==3.0.4
 
+you can use pip to install them:
+pip install -r requirements.txt 
+
 To run the server:
 
 /path/to/python3/bin/python manage.py runserver
