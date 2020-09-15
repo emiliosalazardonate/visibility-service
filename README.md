@@ -10,7 +10,8 @@ astropy==3.0.4
 
 To run the server:
 
-/path/to/python3/bin/python manage.py runserver
+/path/to/python3/bin/python manage.py runserver [port number]
+(by default the port is 8000)
 
 
 Starting development server at http://127.0.0.1:8000/

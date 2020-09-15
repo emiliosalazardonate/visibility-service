@@ -45,7 +45,7 @@ def visibility(request):
               utype="Char.TimeAxis.Coverage.Bounds.Limits.StartTime"),
 
     ])
-    results = getVisibilityIntervals(request.GET.get("s_ra"), request.GET.get("s_dec"),request.GET.get("t_min"), request.GET.get("t_max") )
+    results = VisibilityCalculator.getVisibilityIntervals(request.GET.get("s_ra"), request.GET.get("s_dec"),request.GET.get("t_min"), request.GET.get("t_max") )
 
     number_of_intervals = len(results)
     table.create_arrays(number_of_intervals)
@@ -63,17 +63,17 @@ def visibility(request):
     return HttpResponse(stream, content_type='text/xml')
 
 
-def getVisibilityIntervals(ra, dec, start, end):
-    #These are mock data.
-    #This is telescope-related. The values are [t_start (in MJD), t_stop (in MJD), t_visibility (in seconds) ].
-    # Each observatory should provide with this values.
+class VisibilityCalculator:
+    @staticmethod
+    def getVisibilityIntervals(ra, dec, start, end):
+        # These are mock data.
+        # This is telescope-related. The values are [t_start (in MJD), t_stop (in MJD), t_visibility (in seconds) ].
+        # Each observatory should provide with this values.
 
+        results = [[58986.01767361111, 58987.993101851855, 170677],
+                   [58988.01767361111, 58989.993101851855, 170637],
+                   [58990.01767361111, 58997.993101851855, 170647],
+                   [58992.01767361111, 59997.993101851855, 170647]]
 
-    results = [[58986.01767361111, 58987.993101851855, 170677],
-         [58988.01767361111, 58989.993101851855, 170637],
-         [58990.01767361111, 58997.993101851855, 170647],
-         [58992.01767361111, 59997.993101851855, 170647]]
-
-
-    return results
+        return results
 
